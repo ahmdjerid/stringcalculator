@@ -16,7 +16,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_zero_empty_input() {
+    public void should_return_zero_empty_input() throws Exception {
         //given
         //when
         int result = calculator.run("");
@@ -26,7 +26,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_number_existing_number() {
+    public void should_return_number_existing_number() throws Exception {
         //given
 
         //when
@@ -37,7 +37,7 @@ public class CalculatorTest {
     }
 
     @Test
-    public void should_return_sum_of_tow_numbers_with_comma_delimiter() {
+    public void should_return_sum_of_tow_numbers_with_comma_delimiter() throws Exception {
         //given
 
         //when
@@ -49,7 +49,7 @@ public class CalculatorTest {
 
 
     @Test
-    public void should_return_sum_of_tow_numbers_with_other_delimiter() {
+    public void should_return_sum_of_tow_numbers_with_other_delimiter() throws Exception {
         //given
         //when
         int result = calculator.run("1\n2,3");
@@ -59,5 +59,34 @@ public class CalculatorTest {
 
     }
 
+    @Test
+    public void should_throw_exception_if_input_has_negative_number() throws Exception {
+        //given
+        String ErrorMsg = "";
+        //when
+        try {
+            calculator.run("1,-2");
+        } catch (IllegalArgumentException e) {
+            ErrorMsg = e.getMessage();
+        }
+        //then
+        Assert.assertTrue(ErrorMsg.contains("-2"));
 
+    }
+
+    @Test
+    public void should_throw_exception_if_input_has_multiple_negative_number() throws Exception {
+        //given
+        String ErrorMsg = "";
+        //when
+        try {
+            calculator.run("-1,-2,-3");
+        } catch (IllegalArgumentException e) {
+            ErrorMsg = e.getMessage();
+        }
+        //then
+        Assert.assertTrue(!ErrorMsg.isEmpty());
+        Assert.assertTrue(ErrorMsg.contains("-1-2-3"));
+
+    }
 }
