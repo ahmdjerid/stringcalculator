@@ -48,4 +48,16 @@ public class CalculatorTest {
     }
 
 
+    @Test
+    public void should_return_sum_of_tow_numbers_with_other_delimiter() {
+        //given
+        //when
+        int result = calculator.run("1\n2,3");
+
+        //then
+        Assert.assertEquals(6, result);
+
+    }
+
+
 }

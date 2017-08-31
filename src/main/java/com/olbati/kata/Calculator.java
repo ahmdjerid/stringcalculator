@@ -6,7 +6,7 @@ package com.olbati.kata;
 public class Calculator {
 
 
-    public static final String DELIMITER = ",";
+    public static final String DELIMITER = "[,|\n]";
 
     int run(String numbers) {
 
@@ -21,8 +21,8 @@ public class Calculator {
     private int getSum(String numbers) {
         String[] tabNumber = numbers.split(DELIMITER);
         int sum = 0;
-        for (String aTabNumber : tabNumber) {
-            sum = sum + getAnInt(aTabNumber);
+        for (String aNumber : tabNumber) {
+            sum = sum + getAnInt(aNumber);
         }
         return sum;
     }
